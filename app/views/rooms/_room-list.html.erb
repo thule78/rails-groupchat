@@ -1,0 +1,12 @@
+<% if @rooms.present? %>
+  <% @rooms.each do |r| %>
+  <ul>
+    <li>
+      <%= link_to r.name, room_roomusers_path(r), method: :post, class: 'button is-success' %>
+    </li>
+  </ul>
+  <% end %>
+<% else %>
+    <p>No Channels</p>
+
+<% end %>
