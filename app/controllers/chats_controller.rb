@@ -19,9 +19,9 @@ class ChatsController < ApplicationController
     @chat.user = current_user
 
     if @chat.save
-      redirect_to room_path(@room), notice: 'good job'
-    else
-      redirect_to rooms_path, alert: "oops"
+      ActionCable.server.broadcast 'chat_channel',
+                                    content: @chat.text
+      return redirect_to room_path(@room)
     end
 
 
