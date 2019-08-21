@@ -5,7 +5,7 @@
         <%= render 'rooms/room-list'%>
       </div>
       <div class="chats column is-three-quarters ">
-        <div class="columns  navbar is-light">
+        <div class="columns  navbar is-light" style="z-index: 1;">
           <div class="column is-two-third has-text-centered">
             <h2 class="title is-3"><%= @room.name %></h2>
           </div>
@@ -73,7 +73,7 @@
     $('#new_chat').on('submit', (e) => {
       e.preventDefault();
     })
-    $('#new_chat').reset();
-    $('#chat_list').stop().animate({ scrollTop: $('#chat_list').prop("scrollHeight"), 1000 })
+    $('#new_chat')[0].reset();
+    $('#chat_list').animate({ scrollTop: $('#chat_list').prop("scrollHeight") }, 1000)
   })
 </script>

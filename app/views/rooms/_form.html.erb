@@ -1,7 +1,20 @@
+
 <%= form_for @room do |f|%>
-<div class="field is-one-third">
-  <%= f.text_field :name, class: 'input'%>
-  <%= f.submit "Add", class: 'button is-success is-pulled-left'%>
+<div class="field has-addons">
+  <p class="control">
+  <%= link_to 'Back', rooms_path, class: 'button is-secondary' %>
+</p>
+  <p class="control">
+  <%= f.text_field :name, class: 'input', placeholder: 'give your channel a name'%>
+</p>
+<p class="control">
+  <%= f.submit "Add", class: 'button is-primary'%>
+</p>
+
 </div>
 
 <% end %>
+
+
+
+
