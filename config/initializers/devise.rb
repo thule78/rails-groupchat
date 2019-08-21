@@ -8,7 +8,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '7ffe70e7e73ce6bac8fc981335cf84a9836de45320035a1f3da9b4f3e8bf5aa5c329a58d3b96cc284a4fe00d245236a4d0a05c18840eb87a5a7717552358ce39'
+  # config.secret_key = 'b090e55fe0fb493b963d8cb508f38dc8328d2ed38f9f627d286b26f1f977e6a210440ddea7570b10d605d3f4aecb87b5057ad80c2b762166468b693e9880fdeb'
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
@@ -114,7 +114,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 11
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = 'ef7510a3b7dd68a3816b4e38a0296cb9155a2c9aba2b1eaf88e938c20f7fafff8a6f150f0f1bbe04399fe6e2dabe9bb7d7b834de71c26babf116e18c6da1622f'
+  # config.pepper = '6e2f663cf85741d3216e27b1a0636b620dbfc554e1e7f54698778b8b6f0c6e6e74d0d392d18f7abeb1c4898c9a8b0d115ce45a343bfd57294c90c5d67d0a6f80'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false
@@ -259,7 +259,11 @@ Devise.setup do |config|
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
-  # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
+  config.omniauth :facebook, ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_API_SECRET'], scope: 'user,public_repo',
+                  scope: 'email',
+                  info_fields: 'email,name',
+                  image_size: "large",
+                  token_params: { parse: :json }
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
@@ -296,10 +300,4 @@ Devise.setup do |config|
   # When set to false, does not sign a user in automatically after their password is
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
-
-  config.omniauth :facebook, ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_API_SECRET'], scope: 'user,public_repo',
-                  scope: 'email',
-                  info_fields: 'email,name',
-                  image_size: "large",
-                  token_params: { parse: :json }
 end
