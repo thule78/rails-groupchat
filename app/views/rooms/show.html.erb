@@ -50,7 +50,7 @@
             <%= form_for [@room, Chat.new], remote: :true, id: 'new_chat' do |f|%>
             <div class="field has-addons">
             <p class="control is-expanded">
-              <%= f.text_field :text, class: 'input is-fullwidth'%>
+              <%= f.text_field :text, class: 'input is-fullwidth', placeholder: "Type a message..."%>
 
             </p>
             <p class="control"><%= f.submit "Send", class: 'button is-primary'%></p>
@@ -61,3 +61,19 @@
     </div>
   </div>
 </section>
+
+<script>
+  $(document).ready(function() {
+    $('#new_chat').keydown(function(event) {
+        if (Event.keyCode == 13) {
+          e.preventDefault();
+          $(this).submit();
+        }
+    })
+    $('#new_chat').on('submit', (e) => {
+      e.preventDefault();
+    })
+    $('#new_chat').reset();
+    $('#chat_list').stop().animate({ scrollTop: $('#chat_list').prop("scrollHeight"), 1000 })
+  })
+</script>
