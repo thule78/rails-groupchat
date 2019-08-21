@@ -1,21 +1,21 @@
 <section class="section" data-channel-subcribe="room" data-room-id="<%= @room.id%>" data-user-id="<%= current_user.id %>">
   <div class="row">
     <div class="columns">
-      <div class="column is-one-third">
+      <div class="channels column is-one-quarter">
         <%= render 'rooms/room-list'%>
       </div>
-      <div class="column is-two-third">
-        <div class="columns">
+      <div class="chats column is-three-quarters ">
+        <div class="columns  navbar is-light">
           <div class="column is-two-third has-text-centered">
-            <strong><%= @room.name %></strong>
+            <h2 class="title is-3"><%= @room.name %></h2>
           </div>
           <div class="column is-one-third">
-            <%= link_to "leave", room_roomusers_path(@room), method: :delete %>
+            <%= link_to "leave", room_roomusers_path(@room), method: :delete, class: 'button is-white is-pulled-right' %>
           </div>
         </div>
-        <div id="chat_list">
+        <div class="chat-list is-scrollable" id="chat_list">
           <% if @room.chats.present? %>
-          <% @room.chats.order(created_at: :asc).last(10).each do |c| %>
+          <% @room.chats.order(created_at: :asc).last(100).each do |c| %>
           <% if c.user_id == current_user.id %>
           <div class="column is-7 is-offset-5">
             <p class="notification is-primary conversation-message"  >
@@ -35,6 +35,7 @@
                 <p class="notification conversation-message" >
                   <%= c.text %>
                 </p>
+                <span class="subtitle is-7"><%= time_ago_in_words(c.created_at )%></span>
               </div>
 
             </article>
@@ -45,12 +46,17 @@
           <p> Be the first to chat</p>
           <% end %>
         </div>
-          <div class="chat-form">
+
             <%= form_for [@room, Chat.new], remote: :true, id: 'new_chat' do |f|%>
-            <%= f.text_field :text, class: 'input'%>
-            <%= f.submit "Send", class: 'button is-warning'%>
-            <% end %>
+            <div class="field has-addons">
+            <p class="control is-expanded">
+              <%= f.text_field :text, class: 'input is-fullwidth'%>
+
+            </p>
+            <p class="control"><%= f.submit "Send", class: 'button is-primary'%></p>
+
           </div>
+          <% end %>
       </div>
     </div>
   </div>

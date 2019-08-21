@@ -1,11 +1,22 @@
+<h2 class="title is-4"><i class="fab fa-dashcube"></i> Channels</h2>
 <% if @rooms.present? %>
   <% @rooms.each do |r| %>
   <ul>
-    <li>
-      <%= link_to r.name, room_roomusers_path(r), method: :post, class: 'button is-success' %>
+    <li class="Subtitle is-6">
+      <%= link_to room_roomusers_path(r), method: :post do %>
+      <i class="fab fa-dashcube"></i> <%= r.name %>
+      <% end %>
     </li>
   </ul>
   <% end %>
+  <hr >
+  <div>
+    <%= link_to  new_room_path, class: 'button is-fullwidth is-white' do %>
+  <p><i class="far fa-plus-square"></i> Add New Channel </p>
+    <% end %>
+  </div>
+
+
 <% else %>
     <p>No Channels</p>
 

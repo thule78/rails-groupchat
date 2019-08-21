@@ -13,3 +13,22 @@
  *= require_tree .
  *= require_self
  */
+.navbar {
+  border-bottom: solid 1px #bfbfbf;
+}
+
+.chats, .welcome {
+  border-left: solid 1px #bfbfbf;
+}
+
+.chat-list {
+  height: 70vh;
+  overflow-y: scroll
+}
+
+.welcome {
+  height: 90vh;
+}
+
+
+
