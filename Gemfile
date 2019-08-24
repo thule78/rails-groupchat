@@ -19,6 +19,7 @@ gem 'bulma-rails', '~> 0.7.5'
 gem 'bulma-extensions-rails', '~> 1.0.30'
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'redis'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
