@@ -59,6 +59,13 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+  #  redis setup https://medium.com/ruby-on-rails/easy-caching-with-rails-4-heroku-redis-5fb36381628
+  if ENV['REDIS_URL']
+    config.action_controller.perform_caching = true
+    config.cache_store = :redis_store
+  else
+    config.action_controller.perform_caching = false
+  end
 
   #devise Thu add
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
