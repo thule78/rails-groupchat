@@ -20,6 +20,7 @@ gem 'bulma-extensions-rails', '~> 1.0.30'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'redis'
+gem "google-cloud-storage", "~> 1.8", require: false
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
